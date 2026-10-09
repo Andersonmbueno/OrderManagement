@@ -1,0 +1,16 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Data Source=/app/data/orders.db"
+      Jwt__Secret: "docker-development-secret-change-this-please-123456789"
+    volumes:
+      - order-data:/app/data
+
+volumes:
+  order-data:
